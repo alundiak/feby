@@ -17,7 +17,6 @@ When package is ready to publish, NPM user should be logged in, and NPM should h
 Look to `~/.npmrc` file or run command `npm token list`:
 
 ```
- npm token list
 ┌────────┬─────────┬────────────┬──────────┬────────────────┐
 │ id     │ token   │ created    │ readonly │ CIDR whitelist │
 ├────────┼─────────┼────────────┼──────────┼────────────────┤
@@ -27,7 +26,6 @@ Look to `~/.npmrc` file or run command `npm token list`:
 ├────────┼─────────┼────────────┼──────────┼────────────────┤
 │ 57700d │ e0bf40… │ 2018-03-15 │ no       │                │
 └────────┴─────────┴────────────┴──────────┴────────────────┘
-
 ```
 
 Note: 
@@ -119,8 +117,30 @@ npm unpublish feby@1.0.7
 npm unpublish feby@1.0.8
 ```
 
-Note: If only one valid version used, that version can b unpublished as above command. 
-Need to publish new version, and then unpublish previous, but with such way:
+Note: If only one valid version used, that version can be unpublished as above command. 
+Need to publish new version, and then unpublish previous, but might be needed to deprecate first:
+
+```
+$ npm unpublish feby@1.0.15
+npm ERR! unpublish Failed to update data
+npm ERR! code E400
+npm ERR! You can no longer unpublish this version. Please deprecate it instead
+npm ERR! npm deprecate feby@1.0.15 "this version has been deprecated" : 23-6b802899cf4e380475450040dee99124
+
+$ npm deprecate feby@1.0.15
+npm ERR! Usage: npm deprecate <pkg>[@<version>] <message>
+
+$ npm deprecate feby@1.0.15 "old version"
+$ npm deprecate feby@1.0.17 "old version"
+$ npm unpublish feby@1.0.17
+$ npm unpublish feby@1.0.18
+```
+
+Not sure how should this work properly.
+
+Example of versions list on npmjs.com:
+
+![img](./img/1_versions.png)
 
 ## Remove tags
 
