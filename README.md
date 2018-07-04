@@ -75,6 +75,24 @@ But special format is for storing auth/token information:
     * If regular/official registry, then `_authToken=` regular UUID value.
     * But for Nexus Manager based NPM registry, it's prepended with `NpmToken.`.
 
+## NPM auth on CI
+
+As turned out, `_authToken` as piece of authentication line in `.npmrc` file is created/used when NPM works locally, or anyhow but using `npm adduser/login`.
+
+But, there is `_auth` dedicated field/key, which is expected to be `base64` value of encoded pair `username:password`.
+
+[Here](https://help.sonatype.com/repomanager3/node-packaged-modules-and-npm-registries#NodePackagedModulesandnpmRegistries-AuthenticationUsingBasicAuth) and [here](https://github.com/workshopper/how-to-npm/issues/25#issuecomment-388861931) are mentioned how to use this approach on CI.
+
+* `echo -n 'admin:admin123' | openssl base64` and then use base64 value in:
+* `.npmrc` file content for dedicated field/key `_auth`:
+
+```
+email=you@example.com ; required
+always-auth=true ; optional
+_auth=YWRtaW46YWRtaW4xMjM=  ; required
+```
+
+Having such setup in `.npmrc` file, CI (Jenkins, Bamboo) can authentication every future npm commands like whoami, token, publsish, search.
 
 ## CI & Token Related info:
 - https://docs.npmjs.com/private-modules/ci-server-config
