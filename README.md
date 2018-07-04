@@ -2,11 +2,13 @@
 
 Playground for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry).
 
+
 ## [Add user / Login](https://docs.npmjs.com/cli/adduser)
 ```
 npm login
 ```
 then provide username, password, and email. NPM will store info, and `npm whoami` should work - return username. [Details](https://docs.npmjs.com/cli/whoami).
+
 
 ## [NPM Token](https://docs.npmjs.com/getting-started/working_with_tokens)
 
@@ -51,13 +53,50 @@ npm password: ***
 
 And `npm token list` now will show more tokens. And `npm token delete 57700d` will delete (invalidate) token from list.
 
-### CI & Token Related info:
+
+## [.npmrc](https://docs.npmjs.com/files/npmrc)
+
+Important to know, the format of content is `key=value`. Since maybe NodeJS 6, it's a standard:
+
+```
+init.author.name=Andrii Lundiak
+strict-ssl=false
+always-auth=false
+user-agent="npm/6.1.0 node/v10.4.0 linux x64"
+etc=abc
+//custom-nexus.com/repository/my-hosted-npm-registry/:_authToken=NpmToken.11e11003-4be9-3367-baf5-c104c0ce466f
+//registry.npmjs.org/:_authToken=4bac39b2-33e5-47be-88bd-ec668f28176c
+```
+
+But special format is for storing auth/token information:
+
+* prepend by double forward slashes `//` at the start and 
+* important to have one `/` at the end of registry url (otherwise NPM will not recognize it as registry and will throw `ENEEDAUTH` or similar error.). 
+* then `:_authToken=` and then,
+* I personally guess, that auth token value depends on kind of NPM registry. 
+    * If regular/official registry, then `_authToken=` regular UUID value.
+    * But for Nexus Manager based NPM registry, it's prepended with `NpmToken.`.
+
+
+## CI & Token Related info:
 - https://docs.npmjs.com/private-modules/ci-server-config
 - https://www.npmjs.com/package/npm-profile
 - https://www.npmjs.com/package/npm-cli-login
 - https://github.com/npm/npm-registry-client
 - https://issues.jenkins-ci.org/browse/JENKINS-45854
 - https://github.com/npm/npm/issues/12111
+
+
+## [Version](https://docs.npmjs.com/cli/version)
+```
+npm version patch
+```
+will increase `version` field value in `package.json`, and commit file. Eg. `1.0.15` will be changed to `1.0.16`. `minor`, `major` are also available.
+
+Also git tag will be created. So next `git push origin master --tags` will push tags also.
+
+And when `npm publish` executed, then new version/release will be published to NPM registry.
+
 
 ## [Publish](https://docs.npmjs.com/cli/publish)
 
@@ -71,6 +110,7 @@ Works:
 npm publish
 npm publish --access public
 ```
+
 
 ## Unpublish
 
@@ -88,12 +128,3 @@ Need to publish new version, and then unpublish previous, but with such way:
 git tag -d 1.0.7 && git push origin :refs/tags/1.0.7
 git tag -d 1.0.8 && git push origin :refs/tags/1.0.8
 ```
-
-## [Version](https://docs.npmjs.com/cli/version)
-```
-npm version patch
-```
-will increase `version` field value, and commit file. Eg. `1.0.15` will be changed to `1.0.16`. `minor`, `major` are also available.
-
-Also git tag will be created. So next `git push` will use it.
-And when `npm publish` executed, then new version/release will be published to NPM registry.
