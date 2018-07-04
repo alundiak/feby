@@ -4,7 +4,10 @@
   "description": "Playground for experiments with NPM packages development process using NPM Registry",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo 'no tests'",
+    "preversion": "npm test",
+    "version": "git status",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
