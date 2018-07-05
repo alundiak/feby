@@ -2,7 +2,7 @@
 
 Playground for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry).
 
-![img](https://travis-ci.org/alundiak/feby.svg?branch=master)
+![TravisCI](https://travis-ci.org/alundiak/feby.svg?branch=master) [![CircleCI](https://circleci.com/gh/alundiak/feby/tree/master.svg?style=svg)](https://circleci.com/gh/alundiak/feby/tree/master)
 
 ## [Add user / Login](https://docs.npmjs.com/cli/adduser)
 ```
