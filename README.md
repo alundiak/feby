@@ -2,6 +2,7 @@
 
 Playground for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry).
 
+![img](https://travis-ci.org/alundiak/feby.svg?branch=master)
 
 ## [Add user / Login](https://docs.npmjs.com/cli/adduser)
 ```
