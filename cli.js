@@ -13,7 +13,8 @@ try {
         console.info(cliOptions.generateHelp());
         return 1;
     } else if (optionsInput.version) {
-        var pkg = require(path.join(__dirname, '../', 'package.json')); // moved here to avoid issues with local vs. remote usage of "--version"
+        // moved here to avoid issues with local vs. remote usage of "--version"
+        var pkg = require(path.join(__dirname, 'package.json'));
         console.info(`v${pkg.version}`);
         return 1;
     }
