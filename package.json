@@ -1,6 +1,6 @@
 {
   "name": "feby",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Playground for experiments with NPM packages development process using NPM Registry",
   "main": "index.js",
   "bin": {
