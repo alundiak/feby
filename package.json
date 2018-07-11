@@ -10,7 +10,7 @@
     "test": "echo 'no tests'",
     "preversion": "npm test",
     "version": "echo \"Doing versioning...\"",
-    "postversion": "git push && git push --tags",
+    "postversion": "git push --tags",
     "myFeby": "node cli.js --firstName=Andrii --lastName=Lundiak"
   },
   "repository": {
