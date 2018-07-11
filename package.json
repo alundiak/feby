@@ -10,11 +10,12 @@
     "feby": "./cli.js"
   },
   "scripts": {
-    "test": "echo 'no tests'",
+    "myFebyTest": "node cli.js --firstName=Andrii --lastName=Lundiak",
+    "test": "npm run myFebyTest",
     "preversion": "npm test",
-    "version": "echo \"Doing versioning...\"",
+    "version": "echo \"Releasing new version...\"",
     "postversion": "git push --tags && git push",
-    "myFeby": "node cli.js --firstName=Andrii --lastName=Lundiak"
+    "justDoIt": "npm version patch && npm publish"
   },
   "repository": {
     "type": "git",
