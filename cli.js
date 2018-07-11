@@ -8,7 +8,7 @@ const path = require('path'),
 var optionsInput;
 try {
     optionsInput = cliOptions.parse(process.argv);
-    console.log(optionsInput);
+
     if (optionsInput.help) {
         console.info(cliOptions.generateHelp());
         return 1;

@@ -1,6 +1,6 @@
 {
   "name": "feby",
-  "version": "1.2.0",
+  "version": "1.2.4",
   "description": "Playground for experiments with NPM packages development process using NPM Registry",
   "main": "index.js",
   "bin": {
@@ -9,9 +9,9 @@
   "scripts": {
     "test": "echo 'no tests'",
     "preversion": "npm test",
-    "version": "git status",
+    "version": "echo \"Doing versioning...\"",
     "postversion": "git push && git push --tags",
-    "myFeby": "node cli.js"
+    "myFeby": "node cli.js --firstName=Andrii --lastName=Lundiak"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,5 @@
   "dependencies": {
     "optionator": "^0.8.2"
   },
-  "man" : "./man/doc.1"
+  "man": "./man/doc.1"
 }
