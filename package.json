@@ -1,7 +1,7 @@
 {
   "name": "feby",
   "version": "1.2.11",
-  "description": "Playground for experiments with NPM packages development process using NPM Registry",
+  "description": "Playground npm package created in February => Feby, for experiments with NPM packages development process using NPM Registry",
   "main": "index.js",
   "engines": {
     "node": ">=8.x"
@@ -30,5 +30,5 @@
   "dependencies": {
     "optionator": "^0.8.2"
   },
-  "man": "./man/doc.1"
+  "man": "man/feby.1"
 }

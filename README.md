@@ -1,6 +1,6 @@
 # Feby
 
-Playground for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry).
+Playground npm package created in February => Feby, for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry).
 
 ![TravisCI](https://travis-ci.org/alundiak/feby.svg?branch=master) [![CircleCI](https://circleci.com/gh/alundiak/feby/tree/master.svg?style=svg)](https://circleci.com/gh/alundiak/feby/tree/master)
 
