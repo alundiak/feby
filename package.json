@@ -4,14 +4,16 @@
   "description": "Playground npm package created in February => Feby, for experiments with NPM packages development process using NPM Registry",
   "main": "index.js",
   "engines": {
-    "node": ">=8.x"
+    "node": ">=8.x",
+    "npm": ">6.x"
   },
   "bin": {
     "feby": "./cli.js"
   },
   "scripts": {
-    "myFebyTest": "node cli.js --firstName=Andrii --lastName=Lundiak",
-    "test": "npm run myFebyTest",
+    "myFebyTest1": "node cli.js",
+    "myFebyTest2": "node cli.js --firstName=Andrii --lastName=Lundiak",
+    "test": "npm run myFebyTest2",
     "preversion": "npm test",
     "version": "echo \"Releasing new version...\"",
     "postversion": "git push --tags && git push",

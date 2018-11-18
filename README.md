@@ -2,7 +2,8 @@
 
 Playground npm package created in February => Feby, for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry).
 
-![TravisCI](https://travis-ci.org/alundiak/feby.svg?branch=master) [![CircleCI](https://circleci.com/gh/alundiak/feby/tree/master.svg?style=svg)](https://circleci.com/gh/alundiak/feby/tree/master)
+[![Build Status](https://travis-ci.org/alundiak/feby.svg?branch=master)](https://travis-ci.org/alundiak/feby)
+[![CircleCI](https://circleci.com/gh/alundiak/feby.svg?style=svg)](https://circleci.com/gh/alundiak/feby)
 
 ## [Add user / Login](https://docs.npmjs.com/cli/adduser)
 ```
