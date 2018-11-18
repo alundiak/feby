@@ -1,7 +1,7 @@
 {
   "name": "feby",
   "version": "1.2.15",
-  "description": "Playground npm package created in February => Feby, for experiments with NPM packages development process using NPM Registry",
+  "description": "Playground npm package for experiments with NPM packages development process using NPM Registry. Created in February, 2017, that is why 'Feby'.",
   "main": "index.js",
   "engines": {
     "node": ">=8.x",
