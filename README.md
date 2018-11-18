@@ -1,6 +1,6 @@
 # Feby
 
-Playground npm package created in February => Feby, for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry).
+Playground npm package for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry). Created in February, 2017, that is why "Feby".
 
 [![Build Status](https://travis-ci.org/alundiak/feby.svg?branch=master)](https://travis-ci.org/alundiak/feby)
 [![CircleCI](https://circleci.com/gh/alundiak/feby.svg?style=svg)](https://circleci.com/gh/alundiak/feby)
@@ -9,10 +9,83 @@ Playground npm package created in February => Feby, for experiments with NPM pac
 ```
 npm login
 ```
-then provide username, password, and email. NPM will store info, and `npm whoami` should work - return username. [Details](https://docs.npmjs.com/cli/whoami).
+then provide username, password, and email. NPM will store info, and [`npm whoami`](https://docs.npmjs.com/cli/whoami) should work - return username.
 
 
-## [NPM Token](https://docs.npmjs.com/getting-started/working_with_tokens)
+## [Version](https://docs.npmjs.com/cli/version)
+```
+npm version patch
+```
+will increase `version` field value in `package.json`, and commit file. Eg. `1.0.15` will be changed to `1.0.16`. `minor`, `major` are also available.
+
+Also git tag will be created. So next `git push origin master --tags` will push tags also.
+
+And when `npm publish` executed, then new version/release will be published to NPM registry.
+
+
+## [Publish](https://docs.npmjs.com/cli/publish)
+
+Doesn't work:
+```
+npm publish feby
+```
+
+Works:
+```
+npm publish
+npm publish --access public
+```
+
+UPD: simple `npm publish` works for me now.
+
+
+## Unpublish
+
+```
+npm unpublish feby@1.0.7
+npm unpublish feby@1.0.8
+```
+
+Note: If only one valid version used, that version can be unpublished as above command. 
+Need to publish new version, and then unpublish previous, but might be needed to deprecate first:
+
+```
+$ npm unpublish feby@1.0.15
+npm ERR! unpublish Failed to update data
+npm ERR! code E400
+npm ERR! You can no longer unpublish this version. Please deprecate it instead
+npm ERR! npm deprecate feby@1.0.15 "this version has been deprecated" : 23-6b802899cf4e380475450040dee99124
+```
+
+## Deprecate
+
+```
+$ npm deprecate feby@1.0.15
+npm ERR! Usage: npm deprecate <pkg>[@<version>] <message>
+
+$ npm deprecate feby@1.0.15 "old version"
+$ npm deprecate feby@1.0.17 "old version"
+$ npm unpublish feby@1.0.17
+$ npm unpublish feby@1.0.18
+```
+
+Not sure how should this work properly.
+
+Example of versions list on npmjs.com:
+
+![img](./img/1_versions.png)
+
+
+## Remove tags
+
+```
+git tag -d 1.0.7 && git push origin :refs/tags/1.0.7
+git tag -d 1.0.8 && git push origin :refs/tags/1.0.8
+```
+
+## Publish to custom NMP registry
+
+### [NPM Token](https://docs.npmjs.com/getting-started/working_with_tokens)
 
 When package is ready to publish, NPM user should be logged in, and NPM should have tokens generated.
  
@@ -52,7 +125,7 @@ There is manual approach to create TOKEN via `npm token create`, which asks ONLY
 And `npm token list` now will show more tokens. And `npm token delete 57700d` will delete (invalidate) token from list.
 
 
-## [.npmrc](https://docs.npmjs.com/files/npmrc)
+### [.npmrc](https://docs.npmjs.com/files/npmrc)
 
 Important to know, the format of content is `key=value`. Since maybe NodeJS 6, it's a standard:
 
@@ -62,8 +135,8 @@ strict-ssl=false
 always-auth=false
 user-agent="npm/6.1.0 node/v10.4.0 linux x64"
 etc=abc
-//custom-nexus.com/repository/my-hosted-npm-registry/:_authToken=NpmToken.11e11003-4be9-3367-baf5-c104c0ce466f
-//registry.npmjs.org/:_authToken=4bac39b2-33e5-47be-88bd-ec668f28176c
+//custom-nexus.com/repository/my-hosted-npm-registry/:_authToken=NpmToken.11e11003-****-c104c0ce466f
+//registry.npmjs.org/:_authToken=4bac39b2-****-ec668f28176c
 ```
 
 But special format is for storing auth/token information:
@@ -75,7 +148,7 @@ But special format is for storing auth/token information:
     * If regular/official registry, then `_authToken=` regular UUID value.
     * But for Nexus Manager based NPM registry, it's prepended with `NpmToken.`.
 
-## NPM auth on CI
+### NPM auth on CI
 
 As turned out, `_authToken` as piece of authentication line in `.npmrc` file is created/used when NPM works locally, or anyhow but using `npm adduser/login`.
 
@@ -94,75 +167,10 @@ _auth=YWRtaW46YWRtaW4xMjM=  ; required
 
 Having such setup in `.npmrc` file, CI (Jenkins, Bamboo) can authentication every future npm commands like whoami, token, publsish, search.
 
-## CI & Token Related info:
+### CI & Token Related info:
 - https://docs.npmjs.com/private-modules/ci-server-config
 - https://www.npmjs.com/package/npm-profile
 - https://www.npmjs.com/package/npm-cli-login
 - https://github.com/npm/npm-registry-client
 - https://issues.jenkins-ci.org/browse/JENKINS-45854
 - https://github.com/npm/npm/issues/12111
-
-
-## [Version](https://docs.npmjs.com/cli/version)
-```
-npm version patch
-```
-will increase `version` field value in `package.json`, and commit file. Eg. `1.0.15` will be changed to `1.0.16`. `minor`, `major` are also available.
-
-Also git tag will be created. So next `git push origin master --tags` will push tags also.
-
-And when `npm publish` executed, then new version/release will be published to NPM registry.
-
-
-## [Publish](https://docs.npmjs.com/cli/publish)
-
-Doesn't work:
-```
-npm publish feby
-```
-
-Works:
-```
-npm publish
-npm publish --access public
-```
-
-
-## Unpublish
-
-```
-npm unpublish feby@1.0.7
-npm unpublish feby@1.0.8
-```
-
-Note: If only one valid version used, that version can be unpublished as above command. 
-Need to publish new version, and then unpublish previous, but might be needed to deprecate first:
-
-```
-$ npm unpublish feby@1.0.15
-npm ERR! unpublish Failed to update data
-npm ERR! code E400
-npm ERR! You can no longer unpublish this version. Please deprecate it instead
-npm ERR! npm deprecate feby@1.0.15 "this version has been deprecated" : 23-6b802899cf4e380475450040dee99124
-
-$ npm deprecate feby@1.0.15
-npm ERR! Usage: npm deprecate <pkg>[@<version>] <message>
-
-$ npm deprecate feby@1.0.15 "old version"
-$ npm deprecate feby@1.0.17 "old version"
-$ npm unpublish feby@1.0.17
-$ npm unpublish feby@1.0.18
-```
-
-Not sure how should this work properly.
-
-Example of versions list on npmjs.com:
-
-![img](./img/1_versions.png)
-
-## Remove tags
-
-```
-git tag -d 1.0.7 && git push origin :refs/tags/1.0.7
-git tag -d 1.0.8 && git push origin :refs/tags/1.0.8
-```
