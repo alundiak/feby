@@ -2,6 +2,7 @@
 
 Playground npm package for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry). Created in February, 2017, that is why "Feby".
 
+[![npm version](https://badge.fury.io/js/feby.svg)](https://badge.fury.io/js/feby)
 [![Build Status](https://travis-ci.org/alundiak/feby.svg?branch=master)](https://travis-ci.org/alundiak/feby)
 [![CircleCI](https://circleci.com/gh/alundiak/feby.svg?style=svg)](https://circleci.com/gh/alundiak/feby)
 
@@ -175,3 +176,7 @@ Having such setup in `.npmrc` file, CI (Jenkins, Bamboo) can authentication ever
 - https://github.com/npm/npm-registry-client
 - https://issues.jenkins-ci.org/browse/JENKINS-45854
 - https://github.com/npm/npm/issues/12111
+
+## Resources
+
+- https://blog.npmjs.org/post/184553141742/easy-automatic-npm-publishes
