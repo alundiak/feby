@@ -2,6 +2,13 @@
 
 Playground npm package for experiments with NPM packages development process using [NPM Registry](https://docs.npmjs.com/misc/registry). Created in February, 2017, that is why "Feby".
 
+UPD 28/12/2023
+
+- I deleted packages from npmjs.com, becaus eit was NOT a valid package, and I wanted to avoid any conflicts.
+- CI setup was already not valid, and doesn't make sense now anymore.
+- I remain this repository public, because there are some references but in theory it's very OUTDATED repo, so maybe in 2024 I will decide to remove it anyway.
+
+
 [![npm version](https://badge.fury.io/js/feby.svg)](https://badge.fury.io/js/feby)
 [![Build Status](https://travis-ci.org/alundiak/feby.svg?branch=master)](https://travis-ci.org/alundiak/feby)
 [![CircleCI](https://circleci.com/gh/alundiak/feby.svg?style=svg)](https://circleci.com/gh/alundiak/feby)
