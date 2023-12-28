@@ -4,8 +4,8 @@ Playground npm package for experiments with NPM packages development process usi
 
 UPD 28/12/2023
 
-- I deleted packages from npmjs.com, becaus eit was NOT a valid package, and I wanted to avoid any conflicts.
-- CI setup was already not valid, and doesn't make sense now anymore.
+- I deleted package `feby` from npmjs.com, because it was NOT a valid package, and I wanted to avoid any conflicts.
+- CI setup was already not valid and outdated, and it doesn't make sense now anymore.
 - I remain this repository public, because there are some references but in theory it's very OUTDATED repo, so maybe in 2024 I will decide to remove it anyway.
 
 
