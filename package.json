@@ -1,6 +1,6 @@
 {
   "name": "@lundiak/feby",
-  "version": "1.2.17",
+  "version": "1.2.18",
   "description": "Playground npm package for experiments with NPM packages development process using NPM Registry. Created in February, 2017, that is why 'Feby'.",
   "main": "index.js",
   "engines": {
